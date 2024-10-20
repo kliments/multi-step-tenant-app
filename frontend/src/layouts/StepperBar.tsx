@@ -1,48 +1,56 @@
 import React from "react";
 import useProfileStore from "../stores/useProfileStore";
 import { steps } from "../config/stepConfig";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { getStepStyles } from "../utils/stepStypes";
 
 const StepperBar = () => {
   const { profile } = useProfileStore();
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const getStatus = (value: string | undefined) => {
-    return value ? "bg-black" : "bg-gray-300";
-  };
+  // Extract the current step from the URL path
+  const currentStepKey = steps.find((step) =>
+    location.pathname.includes(step.key)
+  )?.key;
 
   return (
     <div className="flex items-center justify-center w-full max-w-5xl px-4 py-6 mx-auto">
-      {steps.map(({ key, label, step }) => (
-        <React.Fragment key={key}>
-          <div
-            className="flex items-center space-x-2 flex-grow text-center cursor-pointer mr-4"
-            onClick={() => navigate(`/profile/${key}/`)}
-          >
+      {steps.map(({ key, label, step }) => {
+        const { bgColor, textColor, lineColor } = getStepStyles(
+          key,
+          profile,
+          currentStepKey!
+        );
+        return (
+          <React.Fragment key={key}>
             <div
-              className={`w-8 h-8 rounded-full ${
-                key === "summary" ? "bg-gray-300" : getStatus(profile[key])
-              } flex items-center justify-center ${
-                key === "summary"
-                  ? "text-gray-500"
-                  : profile[key]
-                  ? "text-white"
-                  : "text-gray-500"
-              } font-bold`}
+              className="flex items-center space-x-2 flex-grow text-center cursor-pointer mr-4"
+              onClick={() => navigate(`/profile/${key}/`)}
             >
-              {step}
-            </div>
-            <div className="text-sm font-semibold flex-grow">{label}</div>
-            {step < steps.length && (
               <div
-                className={`w-24 h-1 ${
-                  key === "summary" ? "bg-gray-300" : getStatus(profile[key])
+                className={`w-8 h-8 rounded-full flex items-center justify-center font-bold transition-all duration-300 ease-in-out transform ${
+                  key === currentStepKey
+                    ? "border-4 border-blue-500 scale-110"
+                    : ""
+                } ${bgColor} ${textColor}`}
+              >
+                {step}
+              </div>
+              <div
+                className={`text-sm font-semibold flex-grow transition-all ${
+                  key === currentStepKey ? "text-blue-500" : ""
                 }`}
-              />
-            )}
-          </div>
-        </React.Fragment>
-      ))}
+              >
+                {label}
+              </div>
+              {step < steps.length && (
+                <div className={`w-24 h-1 transition-all ${lineColor}`} />
+              )}
+            </div>
+          </React.Fragment>
+        );
+      })}
     </div>
   );
 };
