@@ -1,12 +1,6 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-
-interface Profile {
-  fullName: string;
-  email: string;
-  phoneNumber: string;
-  salary: string;
-}
+import { Profile } from "../types/profile";
 
 interface ProfileStore {
   profile: Profile;
@@ -17,10 +11,10 @@ const useProfileStore = create<ProfileStore>()(
   persist(
     (set) => ({
       profile: {
-        fullName: "",
+        name: "",
         email: "",
-        phoneNumber: "",
-        salary: "",
+        phone: "",
+        income: "",
       },
       updateProfile: (newData) =>
         set((state) => ({
