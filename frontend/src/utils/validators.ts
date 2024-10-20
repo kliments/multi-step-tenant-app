@@ -12,3 +12,11 @@ export const validateEmail = (email: string) => {
   }
   return "";
 };
+
+export const validatePhone = (phone: string) => {
+  const phoneRegex = /^\+\d{12,}$/;
+  if (!phoneRegex.test(phone)) {
+    return "Please enter a valid phone number";
+  }
+  return "";
+};

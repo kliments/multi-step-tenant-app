@@ -8,7 +8,7 @@ const Email = () => {
   return (
     <StepContainer
       keyProp="email"
-      title="Enter your email address"
+      title="Please enter your email address"
       defaultValue={profile.email}
       placeholder="email"
       inputType="email"
