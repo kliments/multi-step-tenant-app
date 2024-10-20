@@ -12,7 +12,7 @@ const MainLayout = () => {
   );
 
   return (
-    <div className="h-screen flex flex-col">
+    <div className="h-screen flex flex-col bg-blue-50">
       <Header />
       {currentRoute?.showStepper && <StepperBar />}
       <Container />
