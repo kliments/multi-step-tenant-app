@@ -1,4 +1,4 @@
-import { routeConfig } from "./routeConfig"; // Adjust the import based on your file structure
+import { routeConfig } from "./routeConfig";
 import Welcome from "../pages/Welcome";
 import Success from "../pages/Success";
 import Name from "../pages/steps/Name";

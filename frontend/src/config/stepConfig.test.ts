@@ -1,4 +1,4 @@
-import { steps } from "./stepConfig"; // Adjust the import based on your file structure
+import { steps } from "./stepConfig";
 import { Profile } from "../types/profile";
 
 describe("steps configuration", () => {
