@@ -1,9 +1,21 @@
-import React from 'react'
+
+import StepContainer from "../../components/StepContainer";
+import useProfileStore from "../../stores/useProfileStore";
+import { validateEmail } from "../../utils/validators";
 
 const Email = () => {
+  const { profile } = useProfileStore();
   return (
-    <div>Email</div>
-  )
-}
+    <StepContainer
+      keyProp="email"
+      title="Enter your email address"
+      defaultValue={profile.email}
+      placeholder="email"
+      inputType="email"
+      validationFn={validateEmail}
+      nextPath="/profile/phone/"
+    />
+  );
+};
 
-export default Email
+export default Email;
