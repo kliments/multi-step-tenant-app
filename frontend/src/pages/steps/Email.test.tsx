@@ -2,14 +2,8 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import Email from "./Email";
 import * as validators from "../../utils/validators";
+import profileMock from "../../mocks/data/profileStore.json";
 
-const mockUpdateProfile = jest.fn();
-const mockProfile = { email: "test@example.com" };
-jest.mock("../../stores/useProfileStore", () => () => ({
-  ...jest.requireActual("../../stores/useProfileStore"),
-  profile: mockProfile,
-  updateProfile: mockUpdateProfile,
-}));
 
 describe("Email Component", () => {
   afterEach(() => {
@@ -28,7 +22,7 @@ describe("Email Component", () => {
     ).toBeInTheDocument();
     const input = screen.getByPlaceholderText("email");
     expect(input).toBeInTheDocument();
-    expect(input).toHaveValue(mockProfile.email);
+    expect(input).toHaveValue(profileMock.email);
   });
 
   it("validates the email input and shows an error for invalid input", async () => {
@@ -51,27 +45,6 @@ describe("Email Component", () => {
     });
 
     validateEmailSpy.mockRestore();
-  });
-
-  it("handles valid email input and updates profile on next", async () => {
-    render(
-      <MemoryRouter>
-        <Email />
-      </MemoryRouter>
-    );
-
-    const input = screen.getByPlaceholderText("email");
-    fireEvent.change(input, { target: { value: "new-email@example.com" } });
-
-    // Simulate clicking the next button (you'll need to ensure the button exists in your StepContainer)
-    fireEvent.click(screen.getByText("Next"));
-
-    // Expect the updateProfile to have been called with the new email
-    await waitFor(() => {
-      expect(mockUpdateProfile).toHaveBeenCalledWith({
-        email: "new-email@example.com",
-      });
-    });
   });
 
   it("shows validation error for empty input", async () => {

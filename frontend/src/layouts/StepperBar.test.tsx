@@ -3,12 +3,6 @@ import { MemoryRouter } from "react-router-dom";
 import StepperBar from "./StepperBar";
 import { steps } from "../config/stepConfig";
 
-// Create a mock for the store
-jest.mock("../stores/useProfileStore", () => () => ({
-  ...jest.requireActual("../stores/useProfileStore"),
-  profile: {},
-}));
-
 const mockNavigate = jest.fn();
 
 jest.mock("react-router-dom", () => ({
