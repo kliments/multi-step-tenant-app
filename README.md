@@ -23,17 +23,20 @@ This is a multi-page tenant application form built with React and TypeScript for
 
 ### Prerequisites
 
-Ensure you have the following installed on your system:
+Ensure you have the following installed and running on your system:
 
+- [Node.js](https://nodejs.org/en/download/package-manager)
+- [PostgreSQL](https://www.postgresql.org/download/)
 - [Docker](https://www.docker.com/products/docker-desktop)
 - [Docker Compose](https://docs.docker.com/compose/)
+
 
 ### Steps to Run
 
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/kliments/tenant-application
+   git clone https://github.com/kliments/multi-step-tenant-app
    cd tenant-application
 
    ```
@@ -42,30 +45,37 @@ Ensure you have the following installed on your system:
 
    Create a `.env` file in the backend folder and copy the contents of `.env.example` to it.
 
-3. **Run the application**:
+3. **Ensure dependencies are installed:**
+
+   Navigate to both **frontend** and **backend** directories and run:
+   ```bash
+   npm install
+   ```
+
+4. **Run the application**:
 
    ```bash
    docker-compose up --build
    ```
 
-3. **Access the application:**
+5. **Access the application:**
 
    Frontend: http://localhost:3000
    Backend API: http://localhost:3001/api/tenants
 
-4. **Stop the application:**
+6. **Stop the application:**
 
    ```bash
    docker-compose down
    ```
 
-5. **Run tests:**
+7. **Run tests:**
 
    ```bash
    docker-compose -f docker-compose.test.yml up --build
    ```
 
-6. **Stop tests:**
+8. **Stop tests:**
 
    ```bash
    docker-compose -f docker-compose.test.yml down
