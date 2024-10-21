@@ -38,7 +38,11 @@ Ensure you have the following installed on your system:
 
    ```
 
-2. **Run the application**:
+2. **Environment configuration**:
+
+   Create a `.env` file in the backend folder and copy the contents of `.env.example` to it.
+
+3. **Run the application**:
 
    ```bash
    docker-compose up --build
