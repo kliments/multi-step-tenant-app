@@ -31,7 +31,6 @@ const useProfileStore = create<ProfileStore>()(
         set({ loading: true });
         try {
           const profile = get().profile;
-          // Call the API service to submit the profile
           await apiService.submitProfileData(profile);
         } catch (error) {
           set({

@@ -1,15 +1,24 @@
+import { Profile } from "../types/profile";
+
 export class ApiService {
-  async submitProfileData(profile: any): Promise<void> {
+  async submitProfileData(profile: Profile): Promise<void> {
     try {
-      // Mock successful API call
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          console.log("Profile submitted successfully:", profile);
-          resolve();
-        }, 1000); // Simulate a delay for the API call
+      const response = await fetch('http://localhost:3001/api/tenants', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(profile),
       });
+  
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+  
+      const result = await response.json();
+      console.log('Submission successful:', result);
     } catch (error) {
-      throw new Error("Error submitting profile");
+      console.error('Error submitting data:', error);
     }
   }
 }
