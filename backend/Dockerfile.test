@@ -7,14 +7,11 @@ WORKDIR /app
 # Copy package.json and package-lock.json (if it exists) to the working directory
 COPY package*.json ./
 
-# Install the application's dependencies (including dev dependencies for testing)
+# Install the application's dependencies
 RUN npm install
 
 # Copy the rest of the application source code into the container
 COPY . .
-
-# Install the PostgreSQL client for tests
-RUN apt-get update && apt-get install -y postgresql-client
 
 # Command to run the tests
 CMD ["npm", "run", "test"]
