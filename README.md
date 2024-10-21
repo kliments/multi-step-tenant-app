@@ -37,7 +37,7 @@ Ensure you have the following installed and running on your system:
 
    ```bash
    git clone https://github.com/kliments/multi-step-tenant-app
-   cd tenant-application
+   cd multi-step-tenant-app
 
    ```
 
@@ -60,8 +60,8 @@ Ensure you have the following installed and running on your system:
 
 5. **Access the application:**
 
-   Frontend: http://localhost:3000
-   Backend API: http://localhost:3001/api/tenants
+   - Frontend: http://localhost:3000
+   - Backend API: http://localhost:3001/api/tenants
 
 6. **Stop the application:**
 
